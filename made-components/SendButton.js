@@ -16,16 +16,25 @@ export class SendButton extends Component {
     
     render() {
         var icon = this.props.icon == 'record' ? this.record : this.text;
+        if (this.props.icon == 'record') {
+            var recStyleBtn = this.props.isRecordingAudio ? styles.recStyleBtn : null;
+            var recStyleImg = this.props.isRecordingAudio ? styles.recStyleImg : null;
+        } else {
+            var recStyleBtn = null;
+            var recStyleImg = null;
+        }
         return (
             <View style={{flex: 0}}>
                 <TouchableNativeFeedback
                     onPress={this.props.onPress}
-                    onLongPress={this.props.onLongPress}
+                    onLongPress={this.props.icon=='record'?this.props.onLongPress:()=>{}}
+                    onPressOut={this.props.icon=='record'?this.props.onPressOut:()=>{}}
+                    delayLongPress={0}
                 >
-                    <View style={styles.btn} >
+                    <View style={[styles.btn, recStyleBtn]} >
                         <Image
                             source={icon}
-                            style={styles.img}
+                            style={[styles.img, recStyleImg]}
                         />
                     </View>
                 </TouchableNativeFeedback>
@@ -36,15 +45,25 @@ export class SendButton extends Component {
 
 const styles = StyleSheet.create({
     btn: {
-        backgroundColor: 'green',
+        backgroundColor: '#075e54',
         height: 50,
         width: 50,
         borderRadius: 25,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        elevation: 4,
     },
     img: {
         width: 25,
         height: 25,
+    },
+    recStyleBtn: {
+        width: 90,
+        height: 90,
+        borderRadius: 45,
+    },
+    recStyleImg: {
+        width: 45,
+        height: 45,
     }
 });

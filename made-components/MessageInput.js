@@ -25,7 +25,7 @@ export class MessageInput extends Component {
                 <TextInput
                     style={styles.messageInput}
                     onChangeText={this.props.onChangeText}
-                    placeholder={'Type your message...'}
+                    placeholder={this.props.placeholder}
                 />
 
                 <TouchableNativeFeedback
@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
         borderRadius: 40,
         height: 50,
         flex: 1,
+        justifyContent: 'center',
     },
     icon: {
         width: 25,

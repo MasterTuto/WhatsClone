@@ -43,7 +43,7 @@ class ChatContent extends Component {
                 <FlatList
                     data={chatsData[this.props.chatId]}
                     renderItem={( {item} ) => {
-                        <ReturnFromChatBtn />
+                        <Text style={{color: 'white'}}>Ola, mundo</Text>
                     }}
                     style={styles.content}
                 />
@@ -58,6 +58,9 @@ class ChatBottom extends Component  {
         this.state ={
             icon: 'record',
             alreadyChangedIcon: false,
+            isRecordingAudio: false,
+            recordTime: -1,
+            intervalId: null,
         }
     }
 
@@ -83,22 +86,49 @@ class ChatBottom extends Component  {
             //enviarMensagem(this.state.text);
         }
     }
+    _onLongPress() {
+        this.state.isRecordingAudio = true;
+        this.state.intervalId = setInterval(()=>{
+            if (this.state.isRecordingAudio) {
+                this.setState((previousState) => ( {
+                    recordTime: previousState.recordTime+1,
+                }
+                ))
+            }
+        }, 1000);
+    }
 
-    handleLongBtnPress() {
+    _onPressOut() {
+        clearInterval(this.state.intervalId);
 
+        this.setState({
+            isRecordingAudio: false,
+            recordTime:-1,
+            intervalId: null,
+        })
     }
 
     render() {
         return (
             <View style={styles.bottom}>
-                <MessageInput
-                    onChangeText={this.handleTextChange.bind(this)}
-                />
+                {this.state.isRecordingAudio ?
+                    <MessageInput
+                        onChangeText={this.handleTextChange.bind(this)}
+                        placeholder={this.state.recordTime.toString()}  
+                    />
+                    :
+                    <MessageInput
+                        onChangeText={this.handleTextChange.bind(this)}
+                        placeholder={'Type your message...'}
+                    />
+                }
 
                 <SendButton
                     icon={this.state.icon}
                     onPress={this.handleSendBtnPress.bind(this)}
-                    onLongPress={this.handleLongBtnPress.bind(this)}
+                    onLongPress={this._onLongPress.bind(this)}
+                    onPressOut={this._onPressOut.bind(this)}
+                    isRecordingAudio={this.state.isRecordingAudio}
                 />
             </View>
         );
@@ -145,14 +175,15 @@ const styles = StyleSheet.create({
     },
     content: {
         flex: 1,
-        flexDirection: 'column'
     },
     contentBackground: {
         flex: 1,
+        justifyContent: 'flex-end',
     },
     bottom: {
         flex: 0,
         flexDirection: 'row',
         marginBottom: 5,
+        alignItems: 'flex-end'
     }
 });
