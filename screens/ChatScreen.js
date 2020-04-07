@@ -186,13 +186,13 @@ export class ChatScreen extends Component{
 
     addNewMessage(text) {
         var date = new Date();
-        var hour = date.getHours();
+        var time = date.getHours()+':'+date.getMinutes();
 
         var newMessage = {
-            id: encodeBase64(text+hour),
+            id: encodeBase64(text+time),
             sender: ':you:',
             content: text,
-            time: hour,
+            time: time,
             messageState: 1, //0:sending(clock),1:sent:2:received,3:read
             contentType: 'text/plain',
         }

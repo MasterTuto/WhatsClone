@@ -29,7 +29,7 @@ export var chatsData = {
             sender: ':you:',
             content: 'Também',
             time: '8:52',
-            messageState: 2, //0:sending(clock),1:sent:2:received,3:read
+            messageState: 3, //0:sending(clock),1:sent:2:received,3:read
             contentType: 'text/plain',
         },
         {
@@ -37,7 +37,7 @@ export var chatsData = {
             sender: ':you:',
             content: 'Ainda tem aquele livro do Harry Potter e a Ordem da Fênix?',
             time: '8:50',
-            messageState: 1, //0:sending(clock),1:sent:2:received,3:read
+            messageState: 3, //0:sending(clock),1:sent:2:received,3:read
             contentType: 'text/plain'
         },
         {
@@ -53,7 +53,7 @@ export var chatsData = {
             sender: ':you:',
             content: 'Me empresta?',
             time: '8:50',
-            messageState: 0, //0:sending(clock),1:sent:2:received,3:read
+            messageState: 3, //0:sending(clock),1:sent:2:received,3:read
             contentType: 'text/plain'
         },
         {
