@@ -25,7 +25,9 @@ export class MessageInput extends Component {
                 <TextInput
                     style={styles.messageInput}
                     onChangeText={this.props.onChangeText}
+                    onChange={this.props.onChange}
                     placeholder={this.props.placeholder}
+                    value={this.props.value}
                 />
 
                 <TouchableNativeFeedback
