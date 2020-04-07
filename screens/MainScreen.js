@@ -1,11 +1,8 @@
 import React, {Component} from 'react';
 import {
   View,
-  Text,
   StyleSheet,
   FlatList,
-  Image,
-  Vibration,
   Dimensions
 } from 'react-native';
 
