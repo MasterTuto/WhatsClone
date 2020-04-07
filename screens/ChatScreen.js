@@ -3,7 +3,6 @@ import {
     View,
     StyleSheet,
     ImageBackground,
-    Text,
     FlatList,
 } from 'react-native';
 
@@ -14,6 +13,7 @@ import { ChatTitleBtn } from '../made-components/ChatTitleBtn';
 import { CallButtons } from '../made-components/CallButtons';
 import { MessageInput } from '../made-components/MessageInput';
 import { SendButton } from '../made-components/SendButton';
+import { Message } from '../made-components/Message';
 
 
 class ChatHeader extends Component {
@@ -42,10 +42,12 @@ class ChatContent extends Component {
         return (
                 <FlatList
                     data={chatsData[this.props.chatId]}
-                    renderItem={( {item} ) => {
-                        <Text style={{color: 'white'}}>Ola, mundo</Text>
-                    }}
-                    style={styles.content}
+                    renderItem={( {item} ) =>
+                        <Message
+                            {...item}
+                        />
+                    }
+                    contentContainerStyle={{justifyContent: 'flex-end'}}
                 />
         );
     }
@@ -178,7 +180,6 @@ const styles = StyleSheet.create({
     },
     contentBackground: {
         flex: 1,
-        justifyContent: 'flex-end',
     },
     bottom: {
         flex: 0,

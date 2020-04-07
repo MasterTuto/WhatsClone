@@ -1,12 +1,8 @@
 import React, {Component} from 'react';
-import {
-  Vibration
-} from 'react-native';
 
 import {MainScreen} from './screens/MainScreen';
 import {ChatScreen} from './screens/ChatScreen';
-
-import chatFeed from './data/chatFeed';
+import {StatusScreen} from './screens/StatusScreen';
 
 export default class App extends Component {
   constructor(props) {
@@ -38,7 +34,12 @@ export default class App extends Component {
 
     } else if (this.state.currentScreen === 'status') {
 
-      //StatusScreen
+      return <StatusScreen
+                onChangeScreen={ (screen, params) => {
+                  this.setState({currentScreen: screen, data: params})
+                } }
+                chatId={this.state.data}
+              />
 
     } else if (this.state.currentScreen === 'calls') {
 

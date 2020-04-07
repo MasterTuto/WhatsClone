@@ -25,20 +25,28 @@ export class OptionsMenu extends Component {
 					</View>
 				</TouchableNativeFeedback>
 
-				<TouchableNativeFeedback style={styles.mensagensBotao} useForeground={true}>
-					<View style={ [styles.button, {opacity: this.state.active == 1 ? 1 : 0.5}]}>
+				<TouchableNativeFeedback
+					style={styles.mensagensBotao}
+					useForeground={true}
+					onPress={()=>{this.props.onPress('main', null)}}
+				>
+					<View style={ [styles.button, {opacity: this.props.current == 'main' ? 1 : 0.5}]}>
 						<Text style={styles.text}>CHATS</Text>
 					</View>
 				</TouchableNativeFeedback>
 
-				<TouchableNativeFeedback style={styles.mensagensBotao} useForeground={true}>
-					<View style={ [styles.button, {opacity: this.state.active == 2 ? 1 : 0.5}]}>
+				<TouchableNativeFeedback
+					style={styles.mensagensBotao}
+					useForeground={true}
+					onPress={()=>{this.props.onPress('status', null)}}
+				>
+					<View style={ [styles.button, {opacity: this.props.current == 'status' ? 1 : 0.5}]}>
 						<Text style={styles.text}>STATUS</Text>
 					</View>
 				</TouchableNativeFeedback>
 
 				<TouchableNativeFeedback style={styles.mensagensBotao} useForeground={true}>
-					<View style={ [styles.button, {opacity: this.state.active == 3 ? 1 : 0.5}]}>
+					<View style={ [styles.button, {opacity: this.props.current == 'calls' ? 1 : 0.5}]}>
 						<Text style={styles.text}>CHAMADAS</Text>
 					</View>
 				</TouchableNativeFeedback>

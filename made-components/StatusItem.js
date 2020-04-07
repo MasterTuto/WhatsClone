@@ -5,10 +5,14 @@ import {
 } from 'react-native';
 
 export default class StatusItem extends Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         return (
             <View>
-                <Text>Hello World!</Text>
+                <Text>{this.props.userId}</Text>
             </View>
         );
     }

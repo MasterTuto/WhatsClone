@@ -34,8 +34,12 @@ export class MainScreen extends Component {
     } else {
       header = (
         <View>
-          <Toolbar activateSearchBar={() => this.setState( {showSearchBar: true} )}/>
-          <OptionsMenu />
+          <Toolbar
+            activateSearchBar={() => this.setState( {showSearchBar: true} )}/>
+          <OptionsMenu
+            onPress={this.props.onChangeScreen}
+            current={'main'}
+          />
         </View>
       );
     }
@@ -69,8 +73,6 @@ export class MainScreen extends Component {
 }
 
 const screenWidth = Math.round(Dimensions.get("window").width);
-const screenHeight = Math.round(Dimensions.get("window").height);
-
 
 const styles = StyleSheet.create({
   mainView: {
