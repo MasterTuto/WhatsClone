@@ -1,13 +1,15 @@
 export var statuses = [
     {
         id: ':you:',
-        statuses: [{
-            contentType: 'text/plain',
-            content: 'Ola, pessoal',
-            background: 'gray',
-            fontFamily: 'notoserif',
-            time: 'Today, 18:05'
-        },]
+        statuses: [
+            {
+                contentType: 'media/image',
+                content: require('../assets/RGFuaWVsIEFtb3JpbQ2.png'),
+                background: 'white',
+                fontFamily: '',
+                time: 'Today: 18:40',
+            },
+        ]
     },
     {
         id: 'RGFuaWVsIEFtb3JpbQ==',

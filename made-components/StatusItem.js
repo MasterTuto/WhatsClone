@@ -14,10 +14,12 @@ class StatusIcon extends Component {
 
 	render() {
 		return (
-            <Image
-                style={styles.statusIcon}
-                source={ this.props.image }
-            />
+			<View style={styles.iconView}>
+				<Image
+					style={styles.statusIcon}
+					source={ this.props.image }
+				/>
+			</View>
 		);
 	}
 }
@@ -41,7 +43,6 @@ export class StatusItem extends Component {
 					>
                         <StatusIcon
                             image={ this.props.lastStatus }
-                            onPress={ this.handleProfilePictureClick.bind(this) }
                         />
 						
                         <View style={{flexDirection: 'column', flex: 1,}} >
@@ -79,8 +80,15 @@ const styles = StyleSheet.create({
 		height: 55,
 		width: 55,
 		borderRadius: 40,
-		margin: 23,
 		flex: 0,
+		margin: 2,
+	},
+	iconView: {
+		borderStyle: "dashed",
+		borderWidth: 2,
+		borderColor: '#cdcdcd',
+		borderRadius: 40,
+		margin: 10,
 	},
 	title: {
 		fontWeight: 'bold',
@@ -107,8 +115,8 @@ const styles = StyleSheet.create({
 		backgroundColor: '#ddd',
         width: '100%',
         justifyContent: 'center',
-        borderTopColor: 'black',
-        borderTopWidth: 0.29,
+        borderTopColor: '#aaa',
+        borderTopWidth: 0.3,
     },
     showMyStatus: {
         width: 27,
