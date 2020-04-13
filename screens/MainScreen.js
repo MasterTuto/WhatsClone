@@ -8,11 +8,9 @@ import {
 
 import { chatFeed } from '../data/chatFeed';
 
-import { Toolbar } from '../made-components/Toolbar';
-import { OptionsMenu } from '../made-components/OptionsMenu';
 import { FAB } from '../made-components/FAB';
 import { MessageFeedItem } from '../made-components/MessageFeedItem';
-import { SearchBar } from '../made-components/SearchBar';
+import { Header } from '../made-components/Header';
 
 export class MainScreen extends Component {
   constructor(props) {
@@ -20,29 +18,16 @@ export class MainScreen extends Component {
 
     this.state = {
       messageFeed: chatFeed,
-      showSearchBar: false,
     }
   }
 
   render() {
-    let header;
-    if (this.state.showSearchBar) {
-      header = <SearchBar deactivateSearchBar={() => this.setState( {showSearchBar: false} )} />;
-    } else {
-      header = (
-        <View>
-          <Toolbar
-            activateSearchBar={() => this.setState( {showSearchBar: true} )}/>
-          <OptionsMenu
-            onPress={this.props.onChangeScreen}
-            current={'main'}
-          />
-        </View>
-      );
-    }
     return (
       <View style={styles.mainView}>
-        { header }
+        <Header
+          current='main'
+          onChangeScreen={ this.props.onChangeScreen }
+        />
 
         <FlatList
           data={this.state.messageFeed}
@@ -63,22 +48,18 @@ export class MainScreen extends Component {
           keyExtractor={(item) => item.id}
         />
 
-        <FAB style={styles.FAB} />
+        <FAB
+          icon={require('../assets/chat-icon.png')}          
+          onPress={() => ToastAndroid.show("Show contacts...", 2)}
+        />
       </View>
     );
   }
 }
-
-const screenWidth = Math.round(Dimensions.get("window").width);
 
 const styles = StyleSheet.create({
   mainView: {
     flex: 1,
     flexDirection: 'column',
   },
-  FAB: {
-    position: 'absolute',
-    bottom: 35,
-    left: screenWidth-83
-  }
 });

@@ -4,7 +4,7 @@ import {
 	TouchableOpacity,
 	StyleSheet,
 	Image,
-	ToastAndroid,
+	Dimensions
 }  from 'react-native';
 
 export class FAB extends Component {
@@ -14,22 +14,22 @@ export class FAB extends Component {
 
 	render() {
 		return (
-			<View style={[ styles.fab, this.props.style]}>
-				<TouchableOpacity onPress={() => ToastAndroid.show("Show contacts...", 2)}>
+			<View style={styles.fab}>
+				<TouchableOpacity
+					onPress={this.props.onPress}
+					onLongPress={this.props.onLongPress}
+				>
 					<Image
-						source={ require('../assets/chat-icon.png') }
-						style={
-							{
-								width: 21,
-								height: 20,
-							}
-						}
+						source={ this.props.icon }
+						style={[{width: 21, height: 20}, this.props.imageStyle]}
 					/>
 				</TouchableOpacity>
 			</View>
 		);
 	}
 }
+
+const screenWidth = Math.round(Dimensions.get("window").width);
 
 const styles = StyleSheet.create({
 	fab: {
@@ -39,6 +39,9 @@ const styles = StyleSheet.create({
 		borderRadius: 32,
 		justifyContent: 'center',
 		alignItems: 'center',
-		elevation: 10,	
+		elevation: 6,	
+		position: 'absolute',
+		bottom: 35,
+		left: screenWidth-83
 	}
 });

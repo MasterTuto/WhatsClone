@@ -3,6 +3,8 @@ import React, {Component} from 'react';
 import {MainScreen} from './screens/MainScreen';
 import {ChatScreen} from './screens/ChatScreen';
 import {StatusScreen} from './screens/StatusScreen';
+import {CallsScreen} from './screens/CallsScreen';
+
 
 export default class App extends Component {
   constructor(props) {
@@ -43,7 +45,12 @@ export default class App extends Component {
 
     } else if (this.state.currentScreen === 'calls') {
 
-      //CallsScreen
+      return <CallsScreen
+                onChangeScreen={ (screen, params) => {
+                  this.setState({currentScreen: screen, data: params})
+                } }
+                chatId={this.state.data}
+              />
       
     }
   }

@@ -4,7 +4,8 @@ import {
 	StyleSheet,
 	Text,
 	Image,
-	TouchableOpacity
+	TouchableOpacity,
+	TouchableNativeFeedback
 }  from 'react-native';
 
 class StatusIcon extends Component {
@@ -37,26 +38,28 @@ export class StatusItem extends Component {
 		return (
 			<View style={styles.messageFeedItem}>
 				<View style={styles.contentAndLine}>
-                    <TouchableOpacity
+                    <TouchableNativeFeedback
 						style={styles.contentAndLine}
 						onPress={()=>{this.props.onPress('showStatus', this.props.id) }}
 					>
-                        <StatusIcon
-                            image={ this.props.lastStatus }
-                        />
-						
-                        <View style={{flexDirection: 'column', flex: 1,}} >
-                            <Text style={styles.title} >{this.props.title}</Text>
-						    <Text style={styles.statusDate}>{this.props.date}</Text>
-                        </View>
+						<View style={{flexDirection: 'row', alignItems: 'center'}} >
+							<StatusIcon
+								image={ this.props.lastStatus }
+							/>
+							
+							<View style={{flexDirection: 'column', flex: 1,}} >
+								<Text style={styles.title} >{this.props.title}</Text>
+								<Text style={styles.statusDate}>{this.props.date}</Text>
+							</View>
 
-                        <TouchableOpacity>
-                            <Image
-                                source={require('../assets/show-more-vertical.png')}
-                                style={styles.showMyStatus}
-                            />
-                        </TouchableOpacity>
-					</TouchableOpacity>
+							<TouchableOpacity>
+								<Image
+									source={require('../assets/show-more-vertical.png')}
+									style={styles.showMyStatus}
+								/>
+							</TouchableOpacity>
+						</View>
+					</TouchableNativeFeedback>
 				</View>
 				
 				<View style={this.props.id==':you:'?styles.separator:styles.line}>

@@ -4,12 +4,12 @@ import {
   StyleSheet,
   FlatList,
   Dimensions,
+  ToastAndroid
 } from 'react-native';
 
-import { Toolbar } from '../made-components/Toolbar';
-import { OptionsMenu } from '../made-components/OptionsMenu';
-import { SearchBar } from '../made-components/SearchBar';
 import { StatusItem } from '../made-components/StatusItem';
+import { Header } from '../made-components/Header';
+import { FAB } from '../made-components/FAB';
 
 import { statuses } from '../data/statuses';
 import { usersData } from '../data/usersData';
@@ -20,7 +20,6 @@ export class StatusScreen extends Component {
 
     this.state = {
       statusList: statuses,
-      showSearchBar: false,
     }
   }
 
@@ -38,33 +37,28 @@ export class StatusScreen extends Component {
 
       id={item.id}
 
-      onPress={this.props.onChangeScreen}
+      //onPress={this.props.onChangeScreen}
+      onPress={()=>ToastAndroid.show("Mostrando status...", 3)}
     />;
   }
 
   render() {
-    let header;
-    if (this.state.showSearchBar) {
-      header = <SearchBar deactivateSearchBar={() => this.setState( {showSearchBar: false} )} />;
-    } else {
-      header = (
-        <View>
-          <Toolbar
-            activateSearchBar={() => this.setState( {showSearchBar: true} )}/>
-          <OptionsMenu
-            onPress={this.props.onChangeScreen}
-            current={'status'}
-          />
-        </View>
-      );
-    }
     return (
       <View style={styles.mainView}>
-        { header }
+        <Header
+          current='status'
+          onChangeScreen={ this.props.onChangeScreen }
+        />
 
         <FlatList
           data={this.state.statusList}
           renderItem={ this.renderStatusItem.bind(this) }
+        />
+
+        <FAB
+          icon={require("../assets/cam-icon.png")}
+          onPress={ ()=>ToastAndroid.show("Add status...", 5)}
+          imageStyle={{width: 25, height: 25}}
         />
       </View>
     );

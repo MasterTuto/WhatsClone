@@ -30,7 +30,7 @@ export class OptionsMenu extends Component {
 					useForeground={true}
 					onPress={()=>{this.props.onPress('main', null)}}
 				>
-					<View style={ [styles.button, {opacity: this.props.current == 'main' ? 1 : 0.5}]}>
+					<View style={ [styles.button, this.props.current == 'main'? styles.current : null]}>
 						<Text style={styles.text}>CHATS</Text>
 					</View>
 				</TouchableNativeFeedback>
@@ -40,13 +40,17 @@ export class OptionsMenu extends Component {
 					useForeground={true}
 					onPress={()=>{this.props.onPress('status', null)}}
 				>
-					<View style={ [styles.button, {opacity: this.props.current == 'status' ? 1 : 0.5}]}>
+					<View style={ [styles.button, this.props.current == 'status'? styles.current : null]}>
 						<Text style={styles.text}>STATUS</Text>
 					</View>
 				</TouchableNativeFeedback>
 
-				<TouchableNativeFeedback style={styles.mensagensBotao} useForeground={true}>
-					<View style={ [styles.button, {opacity: this.props.current == 'calls' ? 1 : 0.5}]}>
+				<TouchableNativeFeedback
+					style={styles.mensagensBotao}
+					useForeground={true}
+					onPress={()=>{this.props.onPress('calls', null)}}
+				>
+					<View style={ [styles.button, this.props.current == 'calls'? styles.current : null]}>
 						<Text style={styles.text}>CHAMADAS</Text>
 					</View>
 				</TouchableNativeFeedback>
@@ -73,6 +77,12 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		flex: 2,
 		height: '100%',
+		opacity: 0.5,
+	},
+	current: {
+		opacity: 1,
+		borderBottomColor: 'white',
+		borderBottomWidth: 2,
 	},
 	buttonCamera: {
 		flex: 1
